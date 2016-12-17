@@ -1,0 +1,85 @@
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <form name="formulario" id="myForm" action='processing.php' method='POST' enctype="multipart/form-data">
+
+	<input type="checkbox" id="tipo" name="escolha" onchange="change_mode()"> Conteudo 
+	
+	<div id="buscaTexto">
+	    <input id="busca" name = "texto" type="text">
+	</div>
+
+	<div id="buscaConteudo">
+	    <table>
+	    <tr> 
+		<td>Filename:</td>
+		<td> <input name="file" id="file" type="file" onchange="submit_form()"></td>
+		<td><div id="gif"><img src="ajax-loader.gif" /></div> </td>
+	    </tr>
+	    </table>
+	</div>
+
+	<input id="botao" value="Buscar" type="submit">
+    </form>
+    <a href="insert.html">Inserir > </a>
+
+    <br><br><br><br><br><br>
+    <h5> <center> Desenvolvido por GRUPO 18 <br> Gabriel Borges 116909 <br> Gustavo Ciotto Pinton 117136 <br> Pedro Mariano Sousa Bezerra 118383 <br> Novembro/2012</center></h5> 
+    <div id = "result"> </div>
+    <script>
+
+    $("#buscaConteudo").hide();
+    $("#gif").hide();
+    formdata = new FormData();
+    index = 0;
+
+    change_mode();
+
+    function change_mode() {
+
+	if ($("#tipo")[0].checked) {
+	    $("#buscaConteudo").show();
+	    if (document.getElementById("file").files.length == 0) $("#botao").hide();
+	    $("#buscaTexto").hide();
+	    return;
+	}
+
+	$("#buscaConteudo").hide();
+	
+	$("#buscaTexto").show();
+	$("#botao").show();
+    }
+
+    
+    function submit_form() {
+ 
+	formdata.append("file["+index+"]",document.getElementById("file").files[0]);
+	index++;
+	$("#botao").hide();
+
+	if (document.getElementById("file").files.length == 0) return;
+
+	$("#gif").show();
+
+	$.ajax({  
+		url: "upload.php",  
+		type: "POST",
+		data: formdata,  
+		processData: false,  
+		contentType: false,
+		success: function(data) {
+			document.getElementById("result").innerHTML = data;
+			$("#botao").show();
+	    
+			$("#gif").hide();			
+  		}  
+	});
+    }
+    </script>
+</body>
+</html>

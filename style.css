@@ -1,0 +1,76 @@
+body {
+	font-family: "Ubuntu";
+	font-size: 14px;
+}
+
+#images {
+	height : 200px;
+	width : auto;
+	padding : 5px 5px 5px 5px;
+
+	-webkit-transition: all 0.25s ease;
+	-moz-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+}
+
+#findAgain {
+	position: fixed;
+	top: 83%;
+	left:80%;
+	width: 30%;
+}
+
+/*
+#images:hover {
+	height: 210px;
+	width: auto;
+}
+*/
+#click {
+	position: fixed;
+	margin-left: 5%;
+	margin-top: 2%;
+	height: 95%;
+	width: 90%;
+	background-color: black;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	align : "center";
+	opacity:1;
+}
+
+#image_clicks {
+	position: fixed;
+	top: 5%;
+	margin-left: 1%;
+	height : 80%;
+	width : auto;
+	opacity:0.8;
+}
+
+#teste{
+	position: relative;
+	background-color : black;
+	color : white;
+	width : 130px;
+  
+}
+
+#descricao{
+	position: fixed;
+	top: 5%;
+	left:65%;
+	height: auto;
+	width: 30%;
+	
+	color : black;
+	font-family: "Ubuntu";
+	font-size : 14px;
+}
+
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: "Ubuntu";
+}

@@ -1,0 +1,61 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+
+<body>
+    Inserir Imagens: <br>
+
+    <form name="formulario" id="myForm" action='insert.php' method='POST' enctype="multipart/form-data">
+		
+	<div id="buscaTexto">
+	    Tags: <br><textarea id="tags" name = "tags" rows="4" cols="50"></textarea> <br>
+	    Descricao : <br><textarea id="desc" name = "desc" rows="4" cols="50"></textarea>
+	</div>
+
+	<div id="buscaConteudo">
+	    <table>
+	    <tr> 
+		<td>Filename:</td>
+		<td> <input name="file" id="file" type="file" onchange="submit_form()"></td>
+		<td><div id="gif"><img src="ajax-loader.gif" /></div> </td>
+	    </tr>
+	    </table>
+	</div>
+
+	<input id="botao" value="Inserir" type="submit">
+
+	<br><a href="home.html"> Home < </a>
+    </form>
+
+    <div id = "result"> </div>
+    <script>
+
+    $("#botao").hide();
+    $("#gif").hide();
+    formdata = new FormData();
+    index = 0;
+    
+    function submit_form() {
+ 
+	formdata.append("file["+index+"]",document.getElementById("file").files[0]);
+	index++;
+	$("#gif").show();
+
+	$.ajax({  
+		url: "insert_image.php",  
+		type: "POST",
+		data: formdata,  
+		processData: false,  
+		contentType: false,
+		success: function(data) {
+			document.getElementById("result").innerHTML = data;
+			$("#botao").show();
+			$("#gif").hide();			
+  		}  
+	});
+    }
+    </script>
+</body>
+</html>
